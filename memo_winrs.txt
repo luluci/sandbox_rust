@@ -1,0 +1,21 @@
+■ windows-rs プロジェクトメモ
+
+(1) 通常通りパッケージ作成
+> cargo new {package}
+
+(2) ビルド高速化のため?にwindows-rsのビルドを別パッケージにする
+> cd {package}
+> cargo new --lib bindings
+
+    (2-1) ルートパッケージにはbindingsへの依存関係を設定
+    [dependencies]
+    bindings = { path = "bindings" }
+
+    (2-2) buildingsパッケージでwindows-rsを指定する
+    [dependencies]
+    windows = "0.18.0"
+
+
+(3) metadata
+「target\.windows\winmd\Windows.Win32.winmd」内に格納されているっぽい。
+「ILSpy」でファイル内容を見れる。 *MicrosoftStoreからインストールする

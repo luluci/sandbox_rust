@@ -1,0 +1,7 @@
+(1) プロジェクトを作成する
+> cargo new {proj_name}
+> cargo new {proj_name} --bin  *同じ。binary templateを使う指定
+
+(2) ライブラリを作成する
+> cargo new {proj_name} --lib
+基本的に(1)で作成したディレクトリに入って実行するはず
