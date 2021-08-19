@@ -4,19 +4,24 @@ fn main() {
 	// https://crates.io/crates/windows
 	windows::build!(
 		Windows::Win32::UI::WindowsAndMessaging::{
-			CreateWindowExA, DefWindowProcA, DispatchMessageA, GetMessageA, PostQuitMessage,
-			RegisterClassA, MessageBoxA, 
-			MSG, WNDCLASSA, HMENU,
+			CreateWindowExW, DefWindowProcW, DispatchMessageW, GetMessageW, PostQuitMessage,
+			RegisterClassW, MessageBoxW,
+			MSG, WNDCLASSW, HMENU,
+			CW_USEDEFAULT,
 			WM_DESTROY, WM_PAINT,
-			//WS_OVERLAPPEDWINDOW, WS_VISIBLE,
+			LoadCursorW, IDC_ARROW,
+			WINDOW_STYLE, WINDOW_EX_STYLE,
+			WNDCLASS_STYLES,
+			MESSAGEBOX_STYLE,			// include: MB_OK
 		},
-		Windows::Win32::UI::WindowsAndMessaging::MESSAGEBOX_STYLE,			// include: MB_OK
-		// Windows::Win32::UI::WindowsAndMessaging::MESSAGEBOX_STYLE::{
-		// 	MB_OK
-		// },
+		Windows::Win32::System::LibraryLoader::{
+			GetModuleHandleW
+		},
 		Windows::Win32::Foundation::{
-			HWND, LPARAM, WPARAM, HINSTANCE, LRESULT
+			HWND, LPARAM, WPARAM, HINSTANCE, LRESULT, PWSTR
 		},
-
+		Windows::Win32::Graphics::Gdi::{
+			ValidateRect,
+		},
 	);
 }
