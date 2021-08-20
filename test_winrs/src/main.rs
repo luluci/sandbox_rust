@@ -12,7 +12,8 @@ use bindings::{
 		// Apis
 		WM_DESTROY, WM_PAINT, WM_CREATE, WM_QUIT, 
 		WINDOW_STYLE,
-		WS_OVERLAPPEDWINDOW, WS_VISIBLE, WS_CHILDWINDOW, WS_CHILD, WS_BORDER,
+		WS_OVERLAPPEDWINDOW, WS_VISIBLE, WS_CHILDWINDOW, WS_CHILD, WS_BORDER, WS_VSCROLL,
+		WS_CLIPCHILDREN, WS_CLIPSIBLINGS, 
 		ES_AUTOHSCROLL, ES_MULTILINE, 
 		WINDOW_EX_STYLE,
 		WS_EX_ACCEPTFILES,
@@ -148,7 +149,7 @@ fn main() {
 			WS_EX_ACCEPTFILES,
 			ws_class_name.as_pwstr(),
 			ws_title.as_pwstr(),
-			WS_OVERLAPPEDWINDOW | WS_VISIBLE,
+			WS_OVERLAPPEDWINDOW | WS_VISIBLE | WS_CLIPCHILDREN,
 			CW_USEDEFAULT,
 			CW_USEDEFAULT,
 			coord.width(),
@@ -232,7 +233,7 @@ fn wndproc_wm_create(window: HWND, message: u32, wparam: WPARAM, lparam: LPARAM)
 
 		//
 		let mut ws_val = 0;
-		ws_val |= (WS_CHILD | WS_VISIBLE | WS_BORDER).0;
+		ws_val |= (WS_CHILD | WS_VISIBLE | WS_BORDER | WS_VSCROLL | WS_CLIPSIBLINGS).0;
 		ws_val |= (ES_AUTOHSCROLL | ES_MULTILINE) as u32;
 		let ws = WINDOW_STYLE(ws_val);
 		let edit_class_name = "EDIT\0";
